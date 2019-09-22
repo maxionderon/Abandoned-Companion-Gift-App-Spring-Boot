@@ -6,14 +6,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Gift {
+public class GiftType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     String type;
 
-    public Gift(){}
+    public GiftType(){}
 
     public void setType(String type) {
 

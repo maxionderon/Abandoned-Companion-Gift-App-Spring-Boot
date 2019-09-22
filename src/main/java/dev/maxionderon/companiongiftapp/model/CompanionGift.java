@@ -20,6 +20,12 @@ public class CompanionGift {
 
     public CompanionGift() { }
 
+    public void setRomancedReaction(Boolean romancedReaction) {
+
+        this.romancedReaction = romancedReaction;
+
+    }
+
     public void setGiftType(GiftType giftType) {
 
         this.giftType = giftType;
@@ -36,6 +42,12 @@ public class CompanionGift {
 
         return this.id;
 
+    }
+
+    public Boolean getRomancedReaction() {
+
+        return this.romancedReaction;
+        
     }
 
     public GiftReaction getGiftReaction() {

@@ -1,6 +1,7 @@
 package dev.maxionderon.companiongiftapp.model;
 
-import java.util.Set;
+import java.util.List;
+import java.util.ArrayList;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,9 +18,63 @@ public class Companion {
     String name;
     String description;
     @OneToMany
-    Set<Affiliation> affiliations;
+    List<Affiliation> affiliations;
     @OneToMany
-    Set<CompanionGift> companionGifts;
-    
+    List<CompanionGift> gifts;
+
+    public Companion() {
+
+        this.affiliations = new ArrayList<Affiliation>() ;
+        this.gifts = new ArrayList<CompanionGift>();
+
+    }
+
+    public void setName(String name) {
+
+        this.name = name;
+
+    }
+
+    public void setDescription(String description) {
+
+        this.description = description;
+
+    }
+
+    public void setAffiliations( List<Affiliation> affiliations ) {
+
+        this.affiliations = affiliations;
+
+    }
+
+    public void setGifts(List<CompanionGift> gifts ) {
+
+        this.gifts = gifts;
+
+    }
+
+    public Long getId() {
+
+        return this.id;
+
+    }
+
+    public String getName() {
+
+        return this.name;
+
+    }
+
+    public List<Affiliation> getAffiliations() {
+
+        return this.affiliations;
+
+    }
+
+    public List<CompanionGift> getGifts() {
+
+        return this.gifts;
+
+    }   
 
 }

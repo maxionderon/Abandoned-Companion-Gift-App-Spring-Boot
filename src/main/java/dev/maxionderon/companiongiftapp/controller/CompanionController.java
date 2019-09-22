@@ -32,7 +32,7 @@ public class CompanionController {
 
     }
 
-    @PostMapping("/companions")
+    @PostMapping("/companion")
     public List<Companion> postCompanion(@RequestBody Companion companion) {
 
         this.companionRepository.save(companion);

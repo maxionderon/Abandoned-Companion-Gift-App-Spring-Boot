@@ -3,8 +3,11 @@ package dev.maxionderon.companiongiftapp.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,6 +39,28 @@ public class AffiliationController {
     List<Affiliation> postAffiliations(@RequestBody Affiliation affiliation) {
 
         this.affiliationRepository.save(affiliation);
+
+        return (List<Affiliation>) this.affiliationRepository.findAll();
+
+    }
+
+    @PutMapping("/affiliation/{id}")
+    List<Affiliation> putAffiliation(@PathVariable("id") Long id, @RequestBody Affiliation affiliation) {
+
+        Affiliation repoAffiliation = this.affiliationRepository.findById(id).get();
+
+        repoAffiliation.setName(affiliation.getName());
+
+        this.affiliationRepository.save(repoAffiliation);
+    
+        return (List<Affiliation>) this.affiliationRepository.findAll();
+
+    }
+
+    @DeleteMapping("/affiliation/{id}")
+    List<Affiliation> deleteAffiliation(@PathVariable("id") Long id) {
+
+        this.affiliationRepository.deleteById(id);
 
         return (List<Affiliation>) this.affiliationRepository.findAll();
 

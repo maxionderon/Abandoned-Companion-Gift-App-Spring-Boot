@@ -11,28 +11,28 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import dev.maxionderon.companiongiftapp.model.*;
 
-
 @RestController
+@RequestMapping("/companion")
 public class CompanionController {
 
     @Autowired
     private CompanionRepository companionRepository;
 
-    @RequestMapping("/companion/controller")
+    @RequestMapping("/controller")
     public String companionController() {
 
         return "Companion Controller";
 
     }
 
-    @GetMapping("/companion")
+    @GetMapping("")
     public List<Companion> getCompanions() {
 
         return (List<Companion>) this.companionRepository.findAll();
 
     }
 
-    @PostMapping("/companion")
+    @PostMapping("")
     public List<Companion> postCompanion(@RequestBody Companion companion) {
 
         this.companionRepository.save(companion);

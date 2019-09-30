@@ -16,26 +16,27 @@ import dev.maxionderon.companiongiftapp.model.Affiliation;
 import dev.maxionderon.companiongiftapp.model.AffiliationRepository;;
 
 @RestController
+@RequestMapping("/affiliation")
 public class AffiliationController {
 
     @Autowired
     private AffiliationRepository affiliationRepository;
 
-    @RequestMapping("/affiliation/controller")
+    @RequestMapping("/controller")
     String affiliationController() {
 
         return "Affiliation Controller";
 
     }
 
-    @GetMapping("/affiliation")
+    @GetMapping("")    
     List<Affiliation> getAffiliations() {
 
         return (List<Affiliation>) this.affiliationRepository.findAll();
 
     }
 
-    @PostMapping("/affiliation")
+    @PostMapping("")
     List<Affiliation> postAffiliations(@RequestBody Affiliation affiliation) {
 
         this.affiliationRepository.save(affiliation);
@@ -44,7 +45,7 @@ public class AffiliationController {
 
     }
 
-    @PutMapping("/affiliation/{id}")
+    @PutMapping("/{id}")
     List<Affiliation> putAffiliation(@PathVariable("id") Long id, @RequestBody Affiliation affiliation) {
 
         Affiliation repoAffiliation = this.affiliationRepository.findById(id).get();
@@ -57,8 +58,14 @@ public class AffiliationController {
 
     }
 
-    @DeleteMapping("/affiliation/{id}")
+    @DeleteMapping("/{id}")
     List<Affiliation> deleteAffiliation(@PathVariable("id") Long id) {
+
+        Affiliation affiliation = this.affiliationRepository.findById(id).get();
+
+        affiliation.removeAffiliationFromCompanions();
+
+        this.affiliationRepository.save(affiliation);
 
         this.affiliationRepository.deleteById(id);
 

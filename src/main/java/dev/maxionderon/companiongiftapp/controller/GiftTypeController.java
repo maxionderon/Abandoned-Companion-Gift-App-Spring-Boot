@@ -16,26 +16,27 @@ import dev.maxionderon.companiongiftapp.model.GiftType;
 import dev.maxionderon.companiongiftapp.model.GiftTypeRepository;
 
 @RestController
+@RequestMapping("/giftType")
 public class GiftTypeController {
 
     @Autowired
     private GiftTypeRepository giftTypeRepository;
 
-    @RequestMapping("/giftType/controller")
+    @RequestMapping("/controller")
     String giftController() {
 
         return "GiftType Controller";
 
     }
 
-    @GetMapping("/giftType")
+    @GetMapping("")
     List<GiftType> getGifts() {
 
         return (List<GiftType>)giftTypeRepository.findAll();
 
     }
 
-    @PostMapping("/giftType")
+    @PostMapping("")
     List<GiftType> postGift(@RequestBody GiftType giftType) {
 
         this.giftTypeRepository.save(giftType);
@@ -44,7 +45,7 @@ public class GiftTypeController {
 
     }
  
-    @PutMapping("/giftType/{id}")
+    @PutMapping("/{id}")
     List<GiftType> putGift(@PathVariable("id") Long id, @RequestBody GiftType giftType) {
 
         GiftType repoGiftType = this.giftTypeRepository.findById(id).get();
@@ -57,7 +58,7 @@ public class GiftTypeController {
 
     }
 
-    @DeleteMapping("/giftType/{id}")
+    @DeleteMapping("/{id}")
     List<GiftType> deleteGift(@PathVariable("id") Long id) {
 
         this.giftTypeRepository.deleteById(id);

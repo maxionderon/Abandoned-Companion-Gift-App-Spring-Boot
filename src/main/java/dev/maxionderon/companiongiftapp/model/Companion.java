@@ -1,13 +1,16 @@
 package dev.maxionderon.companiongiftapp.model;
 
-import java.util.List;
-import java.util.ArrayList;
+import java.util.Set;
+import java.util.HashSet;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -18,16 +21,18 @@ public class Companion {
     Long id;
     String name;
     String description;
-    @OneToMany
-    List<Affiliation> affiliations;
-    @OneToMany
+    @ManyToMany( cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
+    @JoinTable( name = "companion_affiliation_mapping", 
+    joinColumns = { @JoinColumn( name = "companion_id")}, inverseJoinColumns = { @JoinColumn(name = "affiliation_id")})
+    Set<Affiliation> affiliations;
+    @OneToMany( cascade = CascadeType.ALL)
     @JoinColumn(name="companion_id")
-    List<CompanionGift> gifts;
+    Set<CompanionGift> gifts;
 
     public Companion() {
 
-        this.affiliations = new ArrayList<Affiliation>() ;
-        this.gifts = new ArrayList<CompanionGift>();
+        this.affiliations = new HashSet<Affiliation>() ;
+        this.gifts = new HashSet<CompanionGift>();
 
     }
 
@@ -43,13 +48,13 @@ public class Companion {
 
     }
 
-    public void setAffiliations( List<Affiliation> affiliations ) {
+    public void setAffiliations( Set<Affiliation> affiliations ) {
 
         this.affiliations = affiliations;
 
     }
 
-    public void setGifts(List<CompanionGift> gifts ) {
+    public void setGifts( Set<CompanionGift> gifts ) {
 
         this.gifts = gifts;
 
@@ -67,13 +72,13 @@ public class Companion {
 
     }
 
-    public List<Affiliation> getAffiliations() {
+    public Set<Affiliation> getAffiliations() {
 
         return this.affiliations;
 
     }
 
-    public List<CompanionGift> getGifts() {
+    public Set<CompanionGift> getGifts() {
 
         return this.gifts;
 

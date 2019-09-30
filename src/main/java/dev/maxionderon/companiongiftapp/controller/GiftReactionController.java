@@ -16,26 +16,27 @@ import dev.maxionderon.companiongiftapp.model.GiftReaction;
 import dev.maxionderon.companiongiftapp.model.GiftReactionRepository;
 
 @RestController
+@RequestMapping("/giftReaction")
 public class GiftReactionController {
 
     @Autowired
     private GiftReactionRepository giftReactionRepository;
 
-    @RequestMapping("/giftReaction/controller")
+    @RequestMapping("/controller")
     String giftReactionController() {
 
         return "GiftReaction Controller";
 
     }
 
-    @GetMapping("/giftReaction")
+    @GetMapping("")
     List<GiftReaction> getGiftReactions() {
 
         return (List<GiftReaction>) this.giftReactionRepository.findAll();
 
     }
 
-    @PostMapping("/giftReaction")
+    @PostMapping("")
     List<GiftReaction> postGiftReaction(@RequestBody GiftReaction giftReaction) {
 
         this.giftReactionRepository.save(giftReaction);
@@ -44,7 +45,7 @@ public class GiftReactionController {
 
     }
     
-    @PutMapping("/giftReaction/{id}")
+    @PutMapping("/{id}")
     List<GiftReaction> putGiftReaction(@PathVariable("id") Long id, @RequestBody GiftReaction giftReaction) {
 
         GiftReaction repoGiftReaction = this.giftReactionRepository.findById(id).get();
@@ -58,7 +59,7 @@ public class GiftReactionController {
 
     }
 
-    @DeleteMapping("/giftReaction/{id}")
+    @DeleteMapping("/{id}")
     List<GiftReaction> deleteGiftReaction(@PathVariable("id") Long id) {
 
         this.giftReactionRepository.deleteById(id);

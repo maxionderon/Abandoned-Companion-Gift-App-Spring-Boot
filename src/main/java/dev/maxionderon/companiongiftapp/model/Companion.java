@@ -72,6 +72,12 @@ public class Companion {
 
     }
 
+    public String getDescription() {
+
+        return this.description;
+        
+    }
+
     public Set<Affiliation> getAffiliations() {
 
         return this.affiliations;

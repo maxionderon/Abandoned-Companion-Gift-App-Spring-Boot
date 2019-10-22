@@ -4,7 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class CompanionGift {
@@ -13,9 +14,11 @@ public class CompanionGift {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     Boolean romancedReaction;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "gift_type_id")
     GiftType giftType;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "gift_reaction_id")
     GiftReaction giftReaction;
 
     public CompanionGift() { }

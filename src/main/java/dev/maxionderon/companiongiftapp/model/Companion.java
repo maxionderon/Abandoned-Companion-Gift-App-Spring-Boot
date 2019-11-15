@@ -4,6 +4,7 @@ import java.util.Set;
 import java.util.HashSet;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,6 +21,7 @@ public class Companion {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
     String name;
+    @Column( columnDefinition = "TEXT")
     String description;
     @ManyToMany( cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
     @JoinTable( name = "companion_affiliation_mapping", 

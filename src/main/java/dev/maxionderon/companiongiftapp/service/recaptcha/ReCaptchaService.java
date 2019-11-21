@@ -1,5 +1,6 @@
 package dev.maxionderon.companiongiftapp.service.recaptcha;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -11,7 +12,8 @@ public class ReCaptchaService {
 
     private String googleRecaptchaURL = "https://www.google.com/recaptcha/api/siteverify";
 
-    private String reCaptchaSecret = "6Lez8sMUAAAAAPbZC-2g6KuOpB9poyCTff0msuOi";
+    @Value("${google.recaptcha.secret}")
+    private String reCaptchaSecret;
 
     public boolean validateRequestViaReCaptcha(String reCaptchaResponse) {
 

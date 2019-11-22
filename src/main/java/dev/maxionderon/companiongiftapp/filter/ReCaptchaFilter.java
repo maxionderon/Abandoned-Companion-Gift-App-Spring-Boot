@@ -23,18 +23,25 @@ public class ReCaptchaFilter implements Filter {
     private static final String RECAPTCHA_HEADER_NAME = "recaptcha-response";
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterchain)
-            throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterchain) throws IOException, ServletException {
 
         HttpServletRequest httpRequest = (HttpServletRequest) request;
+        
+        if( httpRequest.getMethod().equals("OPTIONS")) {
 
-        if (this.reCaptchaService.validateRequestViaReCaptcha(httpRequest.getHeader(RECAPTCHA_HEADER_NAME)) == false) {
+            filterchain.doFilter(request, response);
 
-            throw new ServletException("reCaptcha not Valid");
+        } else {
 
-        }
+            if (this.reCaptchaService.validateRequestViaReCaptcha(httpRequest.getHeader(RECAPTCHA_HEADER_NAME)) == false) {
 
-        filterchain.doFilter(request, response);
+                throw new ServletException("reCaptcha not Valid");
+
+            }
+
+            filterchain.doFilter(request, response);
+
+        }        
         
     }
 

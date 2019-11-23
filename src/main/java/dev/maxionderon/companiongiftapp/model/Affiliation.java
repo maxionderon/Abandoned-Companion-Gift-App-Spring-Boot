@@ -2,11 +2,11 @@ package dev.maxionderon.companiongiftapp.model;
 
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
@@ -16,8 +16,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Affiliation {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    @GeneratedValue
+    UUID id;
     String name;
 
     @JsonIgnore
@@ -30,7 +30,7 @@ public class Affiliation {
 
     }
 
-    public Long getId() {
+    public UUID getId() {
 
         return this.id;
 

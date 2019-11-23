@@ -1,13 +1,13 @@
 package dev.maxionderon.companiongiftapp.model;
 
 import java.util.Set;
+import java.util.UUID;
 import java.util.HashSet;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -18,8 +18,8 @@ import javax.persistence.OneToMany;
 public class Companion {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    @GeneratedValue
+    UUID id;
     String name;
     @Column( columnDefinition = "TEXT")
     String description;
@@ -62,7 +62,7 @@ public class Companion {
 
     }
 
-    public Long getId() {
+    public UUID getId() {
 
         return this.id;
 

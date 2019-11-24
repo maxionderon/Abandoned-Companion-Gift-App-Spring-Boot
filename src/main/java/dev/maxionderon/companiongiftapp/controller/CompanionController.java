@@ -38,6 +38,8 @@ public class CompanionController {
 
     @PostMapping("")
     public List<Companion> postCompanion(@RequestBody Companion companion) {
+        
+        companion.setId(UUID.randomUUID());
 
         this.companionRepository.save(companion);
 

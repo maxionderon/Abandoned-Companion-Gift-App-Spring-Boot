@@ -8,22 +8,26 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 public class Companion {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Type(type="uuid-char")
     UUID id;
     String name;
     @Column( columnDefinition = "TEXT")
     String description;
-    @ManyToMany( cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
+    @ManyToMany( cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JoinTable( name = "companion_affiliation_mapping", 
     joinColumns = { @JoinColumn( name = "companion_id")}, inverseJoinColumns = { @JoinColumn(name = "affiliation_id")})
     Set<Affiliation> affiliations;
@@ -36,6 +40,12 @@ public class Companion {
         this.affiliations = new HashSet<Affiliation>() ;
         this.gifts = new HashSet<CompanionGift>();
 
+    }
+
+    public void setId(UUID id) {
+
+        this.id = id;
+        
     }
 
     public void setName(String name) {

@@ -1,6 +1,7 @@
 package dev.maxionderon.companiongiftapp.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +38,8 @@ public class CompanionController {
 
     @PostMapping("")
     public List<Companion> postCompanion(@RequestBody Companion companion) {
+        
+        companion.setId(UUID.randomUUID());
 
         this.companionRepository.save(companion);
 
@@ -45,7 +48,7 @@ public class CompanionController {
     }
 
     @PutMapping("/{id}")
-    public List<Companion> putCompanion(@PathVariable("id") Long id, @RequestBody Companion companion) {
+    public List<Companion> putCompanion(@PathVariable("id") UUID id, @RequestBody Companion companion) {
 
         Companion repoCompanion = this.companionRepository.findById(id).get();
 
@@ -62,7 +65,7 @@ public class CompanionController {
 
 
     @DeleteMapping("/{id}")
-    public List<Companion> deleteCompanion(@PathVariable("id") Long id) {
+    public List<Companion> deleteCompanion(@PathVariable("id") UUID id) {
 
         this.companionRepository.deleteById(id);
 

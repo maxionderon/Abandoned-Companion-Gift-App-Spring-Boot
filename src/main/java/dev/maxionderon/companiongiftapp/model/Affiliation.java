@@ -2,6 +2,7 @@ package dev.maxionderon.companiongiftapp.model;
 
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -12,12 +13,15 @@ import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 public class Affiliation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    @Type(type="uuid-char")
+    UUID id;
     String name;
 
     @JsonIgnore
@@ -30,7 +34,7 @@ public class Affiliation {
 
     }
 
-    public Long getId() {
+    public UUID getId() {
 
         return this.id;
 

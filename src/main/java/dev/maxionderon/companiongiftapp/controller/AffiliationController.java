@@ -1,6 +1,7 @@
 package dev.maxionderon.companiongiftapp.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -46,7 +47,7 @@ public class AffiliationController {
     }
 
     @PutMapping("/{id}")
-    List<Affiliation> putAffiliation(@PathVariable("id") Long id, @RequestBody Affiliation affiliation) {
+    List<Affiliation> putAffiliation(@PathVariable("id") UUID id, @RequestBody Affiliation affiliation) {
 
         Affiliation repoAffiliation = this.affiliationRepository.findById(id).get();
 
@@ -59,7 +60,7 @@ public class AffiliationController {
     }
 
     @DeleteMapping("/{id}")
-    List<Affiliation> deleteAffiliation(@PathVariable("id") Long id) {
+    List<Affiliation> deleteAffiliation(@PathVariable("id") UUID id) {
 
         Affiliation affiliation = this.affiliationRepository.findById(id).get();
 

@@ -1,6 +1,7 @@
 package dev.maxionderon.companiongiftapp.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -46,7 +47,7 @@ public class GiftReactionController {
     }
     
     @PutMapping("/{id}")
-    List<GiftReaction> putGiftReaction(@PathVariable("id") Long id, @RequestBody GiftReaction giftReaction) {
+    List<GiftReaction> putGiftReaction(@PathVariable("id") UUID id, @RequestBody GiftReaction giftReaction) {
 
         GiftReaction repoGiftReaction = this.giftReactionRepository.findById(id).get();
 
@@ -60,7 +61,7 @@ public class GiftReactionController {
     }
 
     @DeleteMapping("/{id}")
-    List<GiftReaction> deleteGiftReaction(@PathVariable("id") Long id) {
+    List<GiftReaction> deleteGiftReaction(@PathVariable("id") UUID id) {
 
         this.giftReactionRepository.deleteById(id);
 

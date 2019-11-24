@@ -1,5 +1,7 @@
 package dev.maxionderon.companiongiftapp.model;
 
+import java.util.UUID;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,12 +9,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 public class CompanionGift {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    @Type(type="uuid-char")
+    UUID id;
     Boolean romancedReaction;
     @ManyToOne
     @JoinColumn(name = "gift_type_id")
@@ -41,7 +46,7 @@ public class CompanionGift {
 
     }
 
-    public Long getId() {
+    public UUID getId() {
 
         return this.id;
 

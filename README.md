@@ -10,8 +10,10 @@
     * [2.2. MySql or H2 as Database](#2.2.)
     * [2.3. Google reCaptcha](#2.3.)
 * [3. Changelog](#3.)
-* [4. How to install the application](#5.)
-
+* [4. How to install the application](#4.)
+    * [4.1. Set up the Database](#4.1.)
+        * [4.1.1. Use MySql](#4.1.1.)
+        * [4.1.2. Use H2](#4.1.2.)
 ---
 
 <a name="1."></a>
@@ -30,9 +32,9 @@ The API [demo](https://maxionderon.dev/Companion-Gift-App-Admin-Angular/) is hos
 The [Spring Boot](https://spring.io/projects/spring-framewo) framework was used to develop the application.
 
 <a name="2.2."></a>
-### 2.2. [MySql](https://www.mysql.com/de/) or [H2](https://www.h2database.com/html/main.html) as satabase
+### 2.2. MySql or H2 as Database
 
-The application can connect to a MySql or H2 database.
+The application can connect to a [MySql](https://www.mysql.com/de/) or [H2](https://www.h2database.com/html/main.html) database.
 
 <a name="2.3."></a>
 ### 2.3. Google reCaptcha
@@ -62,6 +64,40 @@ google.recaptcha.secret=${RECAPTCHA_SECRET:HERE_GOES_YOUR_SECRET_KEY}
 
 ...
 ```
+* set up the databse see [4.1.](#4.1.)
+
+* create a database in MySql (e.g. ```companion-gift-app```) and provide them in the application.properties
 
 * run: ```mvn clean package spring-boot:run``` to start the application. The API is now reachable via the base URL: ```localhost:8080``` which can be used in the [Angular application code](https://github.com/maxionderon/Companion-Gift-App-Admin-Angular).
+
+<a name="4.1."></a>
+### 4.1. Set up the Database 
+
+* you can choose between MySql or H2
+
+<a name="4.1.1."></a>
+4.1.1. Use MySql
+
+* create a database in MySql (e.g. ```companion-gift-app```) and provide them in the application.properties file:
+
+``` js
+spring.jpa.hibernate.ddl-auto=update
+spring.datasource.url=jdbc:mysql://localhost:3306/companion-gift-app?serverTimezone=UTC
+spring.datasource.username=YOUR_USERNAME
+spring.datasource.password=YOUR_PASSWORD
+```
+
+<a name="4.1.2."></a>
+4.1.2. Use H2
+
+* provide following configuration in the application.properties file:
+
+``` js
+spring.datasource.url=jdbc:h2:mem:testdb;MODE=MySQL
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=password
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+```
+
 

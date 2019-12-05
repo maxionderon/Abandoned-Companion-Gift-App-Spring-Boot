@@ -7,19 +7,19 @@
 * [1. Purpose of this project](#1.)
 * [2. What I used](#2.)
     * [2.1. Spring Boot](#2.1.)
-    * [2.2. MySql or H2 as Database](#2.2.)
+    * [2.2. MySQL or H2 as Database](#2.2.)
     * [2.3. Google reCaptcha](#2.3.)
 * [3. Changelog](#3.)
 * [4. How to install the application](#4.)
     * [4.1. Set up the Database](#4.1.)
-        * [4.1.1. Use MySql](#4.1.1.)
+        * [4.1.1. Use MySQL](#4.1.1.)
         * [4.1.2. Use H2](#4.1.2.)
 ---
 
 <a name="1."></a>
 ## 1. Purpose of this project
 
-API for my companion app. It is possible to CRUD companions, affiliations, gift types and gift reactions. MySql or H2 usage as DBMS are implemented. 
+API for my companion app. It is possible to CRUD companions, affiliations, gift types and gift reactions. MySQL or H2 usage as DBMS are implemented. 
 
 The API [demo](https://maxionderon.dev/Companion-Gift-App-Admin-Angular/) is hosted via Heroku. Angular application code can be found [here](https://github.com/maxionderon/Companion-Gift-App-Admin-Angular).
 
@@ -32,9 +32,9 @@ The API [demo](https://maxionderon.dev/Companion-Gift-App-Admin-Angular/) is hos
 The [Spring Boot](https://spring.io/projects/spring-framewo) framework was used to develop the application.
 
 <a name="2.2."></a>
-### 2.2. MySql or H2 as Database
+### 2.2. MySQL or H2 as Database
 
-The application can connect to a [MySql](https://www.mysql.com/de/) or [H2](https://www.h2database.com/html/main.html) database.
+The application can connect to a [MySQL](https://www.mysql.com/de/) or [H2](https://www.h2database.com/html/main.html) database.
 
 <a name="2.3."></a>
 ### 2.3. Google reCaptcha
@@ -66,19 +66,19 @@ google.recaptcha.secret=${RECAPTCHA_SECRET:HERE_GOES_YOUR_SECRET_KEY}
 ```
 * set up the databse see [4.1.](#4.1.)
 
-* create a database in MySql (e.g. ```companion-gift-app```) and provide them in the application.properties
+* create a database in MySQL (e.g. ```companion-gift-app```) and provide them in the application.properties
 
 * run: ```mvn clean package spring-boot:run``` to start the application. The API is now reachable via the base URL: ```localhost:8080``` which can be used in the [Angular application code](https://github.com/maxionderon/Companion-Gift-App-Admin-Angular).
 
 <a name="4.1."></a>
 ### 4.1. Set up the Database 
 
-* you can choose between MySql or H2
+* you can choose between MySQL or H2
 
 <a name="4.1.1."></a>
-4.1.1. Use MySql
+4.1.1. Use MySQL
 
-* create a database in MySql (e.g. ```companion-gift-app```) and provide them in the application.properties file:
+* create a database in MySQL (e.g. ```companion-gift-app```) and provide them in the application.properties file:
 
 ``` js
 spring.jpa.hibernate.ddl-auto=update
